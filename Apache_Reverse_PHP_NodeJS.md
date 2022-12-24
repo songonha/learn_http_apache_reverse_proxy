@@ -78,6 +78,9 @@ ServerName sharepoint.DOMAIN.com
 ### </VirtualHost>
 
 
+===============================================================
+
+
 ### Additional ProxyPass Keywords
 
 Normally, mod_proxy will canonicalise ProxyPassed URLs. But this may be incompatible with some backends, particularly those that make use of PATH_INFO. The optional nocanon keyword suppresses this and passes the URL path "raw" to the backend. Note that this keyword may affect the security of your backend, as it removes the normal limited protection against URL-based attacks provided by the proxy.
