@@ -1,3 +1,6 @@
+##Configuration Application with Apache Reverse Proxy, PHP, MariaDB, NodeJS.
+### Websocket Wss:
+
 With Droplet:
 
 1/ Link IP: Droplet Public IP
