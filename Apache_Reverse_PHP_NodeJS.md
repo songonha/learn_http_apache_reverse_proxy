@@ -12,7 +12,8 @@ With Droplet:
    
 4/ Sample Configuration:
 
-<VirtualHost *:443>
+### <VirtualHost *:443>
+
     ServerName redmine.DOMAIN.com
     
     SSLEngine On
@@ -41,10 +42,10 @@ With Droplet:
     
     ProxyPassReverse / https://192.168.1.14/
 
-</VirtualHost>
+### </VirtualHost>
 
 
-<VirtualHost *:443>
+### <VirtualHost *:443>
 
 ServerName sharepoint.DOMAIN.com
 
@@ -74,4 +75,4 @@ ServerName sharepoint.DOMAIN.com
    
    ProxyPassReverse / http://192.168.1.11/
 
-</VirtualHost>
+### </VirtualHost>
