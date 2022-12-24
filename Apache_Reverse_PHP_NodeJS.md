@@ -91,11 +91,19 @@ The optional interpolate keyword, in combination with ProxyPassInterpolateEnv, c
 
 RewriteEngine On
 
+
 RewriteCond "%{HTTPS}" =off
+
 RewriteRule "." "-" [E=protocol:http]
+
 RewriteCond "%{HTTPS}" =on
+
 RewriteRule "." "-" [E=protocol:https]
 
+
 RewriteRule "^/mirror/foo/(.*)" "%{ENV:protocol}://backend.example.com/$1" [P]
+
 ProxyPassReverse  "/mirror/foo/" "http://backend.example.com/"
+
 ProxyPassReverse  "/mirror/foo/" "https://backend.example.com/"
+
