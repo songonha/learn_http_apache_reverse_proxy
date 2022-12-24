@@ -76,3 +76,23 @@ ServerName sharepoint.DOMAIN.com
    ProxyPassReverse / http://192.168.1.11/
 
 ### </VirtualHost>
+
+
+### Additional ProxyPass Keywords
+
+Normally, mod_proxy will canonicalise ProxyPassed URLs. But this may be incompatible with some backends, particularly those that make use of PATH_INFO. The optional nocanon keyword suppresses this and passes the URL path "raw" to the backend. Note that this keyword may affect the security of your backend, as it removes the normal limited protection against URL-based attacks provided by the proxy.
+
+Normally, mod_proxy will include the query string when generating the SCRIPT_FILENAME environment variable. The optional noquery keyword (available in httpd 2.4.1 and later) prevents this.
+
+The optional interpolate keyword, in combination with ProxyPassInterpolateEnv, causes the ProxyPass to interpolate environment variables, using the syntax ${VARNAME}. Note that many of the standard CGI-derived environment variables will not exist when this interpolation happens, so you may still have to resort to mod_rewrite for complex rules. Also note that interpolation is supported within the scheme/hostname/port portion of a URL only for variables that are available when the directive is parsed (like Define). Dynamic determination of those fields can be accomplished with mod_rewrite. The following example describes how to use mod_rewrite to dynamically set the scheme to http or https:
+
+RewriteEngine On
+
+RewriteCond "%{HTTPS}" =off
+RewriteRule "." "-" [E=protocol:http]
+RewriteCond "%{HTTPS}" =on
+RewriteRule "." "-" [E=protocol:https]
+
+RewriteRule "^/mirror/foo/(.*)" "%{ENV:protocol}://backend.example.com/$1" [P]
+ProxyPassReverse  "/mirror/foo/" "http://backend.example.com/"
+ProxyPassReverse  "/mirror/foo/" "https://backend.example.com/"
