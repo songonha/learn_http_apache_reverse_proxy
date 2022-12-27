@@ -11,9 +11,9 @@
   
 6/ Sudo =>
 
-  sudo a2enmod ssl
+    sudo a2enmod ssl
   
-  sudo a2enmod headers
+    sudo a2enmod headers
   
   
 / Run server.
