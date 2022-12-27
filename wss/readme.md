@@ -8,7 +8,14 @@
 
 5/ Buy zerossl.com for wss.
   => Get openssl req -new -newkey ....
+  
+6/ Sudo =>
 
+  sudo a2enmod ssl
+  
+  sudo a2enmod headers
+  
+  
 / Run server.
 
 / All done!!!
