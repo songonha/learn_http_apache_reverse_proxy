@@ -14,8 +14,10 @@
     sudo a2enmod ssl
   
     sudo a2enmod headers
+    
+    sudo a2enconf ssl-params
   
   
-/ Run server.
+7/ Run test ssl server. https://ssllabs.com/ssltest
 
 / All done!!!
