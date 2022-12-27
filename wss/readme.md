@@ -6,6 +6,9 @@
 
 4/ a2ensite new wss domain site conf
 
-5/ Run server.
+5/ Buy zerossl.com for wss.
+  => Get openssl req -new -newkey ....
 
-6/ All done!!!
+/ Run server.
+
+/ All done!!!
