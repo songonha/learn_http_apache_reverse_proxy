@@ -1,0 +1,48 @@
+  GNU nano 2.9.3                                                   wss.thucthuc22.com-le-ssl.conf                                                             
+
+<IfModule mod_ssl.c>
+<VirtualHost *:443>
+
+        ServerAdmin example@gmail.com
+        ServerName wss.example.com
+        ServerAlias www.wss.example.com
+        DocumentRoot /var/www/wss.example.com/public_html
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        SSLProxyEngine On
+        SSLEngine On
+        SSLCertificateFile /etc/encryption/certificate.crt
+        SSLCertificateKeyFile /etc/encryption/private.key
+        SSLCertificateChainFile /etc/encryption/ca_bundle.crt
+        Include /etc/letsencrypt/options-ssl-apache.conf
+
+        RewriteEngine On
+        RewriteCond %{QUERY_STRING} transport=polling       [NC]
+        RewriteRule /(.*)           http://localhost:2004/$1 [P]
+        RewriteCond %{HTTP:Upgrade} websocket               [NC]
+        RewriteCond %{HTTP:Connection} upgrade              [NC]
+        RewriteRule /(.*)           wss://localhost:2004/$1  [P]
+
+<Proxy *>
+  Order allow,deny
+  Allow from all
+</Proxy>
+
+        ProxyRequests Off
+        ProxyPreserveHost On
+        ProxyPass           /ws   http://localhost:2004
+        ProxyPass           /wss   wss://localhost:2004/
+        ProxyPassReverse    /ws   http://localhost:2004
+        ProxyPassReverse    /wss   wss://localhost:2004/
+
+<Location />
+  Order allow,deny
+  Allow from all
+</Location>
+
+</VirtualHost>
+</IfModule>
+
+
