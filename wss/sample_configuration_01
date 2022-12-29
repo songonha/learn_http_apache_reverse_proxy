@@ -1,4 +1,4 @@
-  GNU nano 2.9.3                                                   wss.thucthuc22.com-le-ssl.conf                                                             
+  GNU nano 2.9.3                                                   wss.example.com-le-ssl.conf                                                             
 
 <IfModule mod_ssl.c>
 <VirtualHost *:443>
